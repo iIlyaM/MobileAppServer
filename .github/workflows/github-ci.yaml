@@ -6,19 +6,6 @@ on:
 
 jobs:
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
-      - name: build & push docker image
-        uses: mr-smithers-excellent/docker-build-push@v6
-        with:
-          image: app/students_db
-          tags: latest
-          registry: docker.io
-          dockerfile: Dockerfile
-
   deploy:
     needs: build
     runs-on: ubuntu-latest

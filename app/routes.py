@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from students import students_router
+from app.students import students_router
 
 routes = APIRouter()
 

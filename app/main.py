@@ -7,8 +7,8 @@ from starlette import status
 from starlette.requests import Request
 from starlette.responses import Response, JSONResponse
 
-from core.database import SessionLocal
-from routes import routes
+from app.core.database import SessionLocal
+from app.routes import routes
 
 app = FastAPI(title="StudentDatabase")
 

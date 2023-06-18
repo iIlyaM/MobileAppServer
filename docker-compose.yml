@@ -5,12 +5,21 @@ services:
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
     ports:
       - 80:80
+    depends_on:
+      - db
+    environment:
+      - DB_URL=postgresql://postgres:6201111@db/students_db
   db:
     image: postgres:alpine
     container_name: db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     ports:
-      - "5432:${DB_PORT}"
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=6201111
       - POSTGRES_DB=students_db
+
+volumes:
+  postgres_data:

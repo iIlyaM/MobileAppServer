@@ -6,8 +6,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from core.database import SQLALCHEMY_DATABASE_URL
-from core.base import Base
+from app.core.database import SQLALCHEMY_DATABASE_URL
+from app.core.base import Base
 
 sys.path = ['', '..'] + sys.path[1:]
 

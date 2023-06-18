@@ -1,6 +1,6 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, Float, Date
+from sqlalchemy import Column, String, Integer, ForeignKey, Date
 from sqlalchemy.orm import relationship
-from core.database import Base
+from app.core.database import Base
 
 
 class Student(Base):

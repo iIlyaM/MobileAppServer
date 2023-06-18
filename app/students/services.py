@@ -1,7 +1,7 @@
 from .models import Student, Group
 from .schemas import UpdateStudentModel, DisplayGroup
 from typing import List
-from core.utils import add_entity
+from app.core.utils import add_entity
 from fastapi import HTTPException
 
 

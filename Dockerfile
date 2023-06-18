@@ -1,5 +1,5 @@
 #
-FROM python:3.9
+FROM python:3.10
 
 #
 WORKDIR /code
@@ -8,8 +8,8 @@ WORKDIR /code
 COPY ./requirements.txt /code/requirements.txt
 
 #
-RUN pip install --no-cache-dir -r /code/requirements.txt
-
+RUN pip install --upgrade pip \
+   pip install -r /code/requirements.txt
 #
 COPY ./app /code/app
 

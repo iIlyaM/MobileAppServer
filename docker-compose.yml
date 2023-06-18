@@ -4,11 +4,14 @@ services:
     build: .
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
     ports:
-      - 80:80
+      - "80:80"
     depends_on:
       - db
     environment:
       - DB_URL=postgresql://postgres:6201111@db/students_db
+    volumes:
+      - ./:/code/app
+
   db:
     image: postgres:alpine
     container_name: db
@@ -23,3 +26,5 @@ services:
 
 volumes:
   postgres_data:
+    name: postgres-data
+    driver: local

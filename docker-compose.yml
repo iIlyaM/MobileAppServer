@@ -5,9 +5,10 @@ services:
     container_name: db
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"
     environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=6201111
       - POSTGRES_DB=students_db
@@ -23,6 +24,7 @@ services:
       - DB_URL=postgresql://postgres:6201111@db:5432/students_db
     volumes:
       - .:/app
-
+    restart: always
 volumes:
   postgres_data:
+

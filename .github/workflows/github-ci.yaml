@@ -23,7 +23,6 @@ jobs:
 
       - name: migrations
         uses: actions/github-script@v6
-        id: alembic-migration
         with:
           result-encoding: string
           retries: 3

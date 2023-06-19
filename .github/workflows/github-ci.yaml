@@ -17,6 +17,5 @@ jobs:
       - name: deploy
         uses: okteto/pipeline@latest
         with:
-          name: student_db
           timeout: 8m
           variables: ${{ secrets.ENV_FILE }}

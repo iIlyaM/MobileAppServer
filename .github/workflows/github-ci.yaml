@@ -22,8 +22,4 @@ jobs:
           variables: ${{ secrets.ENV_FILE }}
 
       - name: migrations
-        uses: actions/github-script@v6
-        with:
-          result-encoding: string
-          retries: 3
-          script: docker-compose exec -T app bash -c "cd app && alembic upgrade head"
+        run: docker-compose exec -T app bash -c "cd app && alembic upgrade head"

@@ -3,6 +3,8 @@ from .schemas import UpdateStudentModel, DisplayGroup
 from typing import List
 from app.core.utils import add_entity
 from fastapi import HTTPException
+from sqlalchemy import or_
+
 
 
 async def add_new_student(request, database):
@@ -32,14 +34,27 @@ async def add_new_student(request, database):
 
 
 async def get_students(database, second_name: str | None = None, group_num: int | None = None):
-    if second_name:
+    # if second_name:
+    #     students = database.query(Student).join(Group, Student.group_id == Group.id).filter(
+    #         Student.second_name.contains(second_name)).all()
+    # elif group_num:
+    #     students = database.query(Student).join(Group, Student.group_id == Group.id).filter(
+    #         Group.group_number == group_num).all()
+    # else:
+    #     #TODO поправить вывод пользователей без группы
+    #     students = database.query(Student).join(Group).all()
+    # return students
+    if second_name and group_num:
+        students = database.query(Student).join(Group, Student.group_id == Group.id).filter(
+            or_(Student.second_name.contains(second_name), Group.group_number == group_num)).all()
+    elif second_name:
         students = database.query(Student).join(Group, Student.group_id == Group.id).filter(
             Student.second_name.contains(second_name)).all()
     elif group_num:
         students = database.query(Student).join(Group, Student.group_id == Group.id).filter(
             Group.group_number == group_num).all()
     else:
-        students = database.query(Student).join(Group, Student.group_id == Group.id).all()
+        students = database.query(Student).all()
     return students
 
 
